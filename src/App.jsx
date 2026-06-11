@@ -35,11 +35,6 @@ function App() {
     return () => clearTimeout(timeout);
   }, [loading]);
 
-  React.useEffect(() => {
-    console.log(theme.palette);
-    
-  })
-
   const logInHandler = () => {
     setIsLogIn(prev => !prev);
     setLoading(true);
@@ -48,7 +43,7 @@ function App() {
   const logInOnly = isLogIn && !loading;
 
   return (
-    <ThemeContext.Provider value={{ loading, isLogIn, logInHandler, logInOnly, setIsDarkTheme }}>
+    <ThemeContext.Provider value={{ loading, isLogIn, logInHandler, logInOnly, setIsDarkTheme, isDarkTheme }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header sx={{ backgroundColor: theme.palette.header.backgroundColor, boxShadow: theme.palette.header.shadow, color: theme.palette.primary.main }}/>

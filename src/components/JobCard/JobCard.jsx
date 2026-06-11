@@ -37,9 +37,9 @@ export default function JobCard( {job} ) {
 						useFlexGap
 						sx={{ flexWrap: 'wrap', mt: 2}}
 					>
-						{job.skills.map( (skill, index) => 
+						{job.skills.map( (skill) => 
 							<Typography
-								key={index}
+								key={skill}
 								component="span"
 								sx={{
 									color: 'primary.main',
