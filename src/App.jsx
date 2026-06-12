@@ -1,17 +1,20 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+// CSS
 import './App.css';
+// MUI
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main';
-
+import CssBaseline from '@mui/material/CssBaseline';
 // Context
 import { ThemeContext } from './contexts/AppContext';
+// Routes
+import {Routes, Route} from 'react-router';
+import MainLayout from './layout/MainLayout';
+//Pages
+import { Home, JobList, JobDetail } from './pages';
 
 function App() {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [isLogIn, setIsLogIn] = React.useState(false);
 
   const theme = React.useMemo(() => createTheme({
     palette: {
@@ -36,18 +39,22 @@ function App() {
   }, [loading]);
 
   const logInHandler = () => {
-    setIsLogIn(prev => !prev);
     setLoading(true);
   }
 
-  const logInOnly = isLogIn && !loading;
-
   return (
-    <ThemeContext.Provider value={{ loading, isLogIn, logInHandler, logInOnly, setIsDarkTheme, isDarkTheme }}>
+    <ThemeContext.Provider value={{ loading, logInHandler, setIsDarkTheme, isDarkTheme }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header sx={{ backgroundColor: theme.palette.header.backgroundColor, boxShadow: theme.palette.header.shadow, color: theme.palette.primary.main }}/>
-        <Main />
+        <Routes>
+          <Route path="/" element={<MainLayout theme={theme}/>}>
+            <Route index element={<Home/>} />
+            <Route path="job-list">
+              <Route index element={<JobList/>} />
+              <Route path=":id" element={<JobDetail/>} />
+            </Route>
+          </Route>
+        </Routes>
       </ThemeProvider>
     </ThemeContext.Provider>
   );

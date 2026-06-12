@@ -6,11 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Logo from '../../assets/logo.png';
-import SearchInput from '../SearchInput/SearchInput';
+import SearchInput from '../../components/SearchInput/SearchInput';
 import Container from '@mui/material/Container';
 import { Stack } from '@mui/material';
 import { ThemeContext } from '../../contexts/AppContext';
-import DarkModeSwitch from '../DarkModeSwicth/DarkModeSwitch';
+import DarkModeSwitch from '../../components/DarkModeSwicth/DarkModeSwitch';
 
 
 
