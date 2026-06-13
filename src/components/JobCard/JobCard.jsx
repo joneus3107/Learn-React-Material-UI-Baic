@@ -1,19 +1,8 @@
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Stack } from '@mui/material';
+import { Card, CardActions, CardContent, Button, Typography, Stack } from '@mui/material';
+import { formatCurrency } from '../../hooks/useJob';
+
 
 export default function JobCard( {job} ) {
-
-	const formatCurrency = num => {
-		return new Intl.NumberFormat('vi-VN', {
-			style: 'currency',
-			currency: 'USD',
-			currencyDisplay: 'narrowSymbol',
-		}).format(num);
-	}
 
   return (
     <Card variant="outlined" sx={{ height: '100%', boxSizing: 'border-box', backgroundColor: 'jobCard.backgroundColor'}}>
@@ -52,7 +41,7 @@ export default function JobCard( {job} ) {
 				)}
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small" href={`/job-list/${job.id}`}>Learn More</Button>
       </CardActions>
     </Card>
   );
